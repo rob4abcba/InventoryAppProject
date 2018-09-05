@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Inventory</string>
+    // menu inserting dummy data
+    <string name="action_insert_dummy_data">Insert Dummy Data</string>
+
+    // menu delete entries
+    <string name="action_delete_all_entries">Delete All Inventory</string>
+
+    // save inventory data
+    <string name="action_save">Save</string>
+    // delete inventory data
+    <string name="action_delete">Delete</string>
+
+
 </resources>

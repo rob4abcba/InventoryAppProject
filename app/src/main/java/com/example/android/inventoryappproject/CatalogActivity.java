@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.android.inventoryappproject.data.InventoryContract.inventoryEntry;
@@ -19,13 +21,8 @@ public class CatalogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         floatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-         fab.setOnClickListener( (view) {
-                 Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
-                 startActivity(intent);
 
-                 });
-         mDbHelper = new inventoryDbHelper(this);
+         mDbHelper = new InventoryDbHelper(this);
          }
 
          @Override
@@ -45,6 +42,7 @@ public class CatalogActivity extends AppCompatActivity {
                      inventoryEntry.COLUMN_INVENTORY_QUANTITY,
                      inventoryEntry.COLUMN_INVENTORY_SUPPLIER_NAME,
                      inventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE_NUMBER };
+
              Cursor cursor = db.query(
                      inventoryEntry.TABLE_NAME,
                      projection,
@@ -54,7 +52,7 @@ public class CatalogActivity extends AppCompatActivity {
                      null,
                      null);
 
-             TextView displayView = (TextView) findViewById(R.id.text_view_inventory);
+
 
            try {
                displayView.setText("The inventory table contains" + cursor.getCount() + "inventory.\n\n");
@@ -70,7 +68,7 @@ public class CatalogActivity extends AppCompatActivity {
                int priceColumnIndex = cursor.getColumnIndex(inventoryEntry.COLUMN_INVENTORY_PRICE);
                int quantityColumnIndex = cursor.getColumnIndex(inventoryEntry.COLUMN_INVENTORY_QUANTITY);
                int supplierColumnIndex = cursor.getColumnIndex(inventoryEntry.COLUMN_INVENTORY_SUPPLIER_NAME);
-               int supplierphoneColumnIndex = cursor.getColumnIndex(inventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE_NUMBER);
+               int supplierPhoneColumnIndex = cursor.getColumnIndex(inventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE_NUMBER);
 
                while (cursor.moveToNext()) {
 
@@ -78,8 +76,8 @@ public class CatalogActivity extends AppCompatActivity {
                    String currentProduct = cursor.getString(productColumnIndex);
                    String currentPrice = cursor.getString(priceColumnIndex);
                    int currentQuantity = cursor.getInt(quantityColumnIndex);
-                   int currentSupplier = cursor.getInt(supplierColumnIndex);
-                   int currentSupplierPhone = cursor.getInt(supplierphoneColumnIndex);
+                   String currentSupplier = cursor.getString(supplierColumnIndex);
+                   String currentSupplierPhone = cursor.getString(supplierPhoneColumnIndex);
 
                    displayView.append(("\n" + currentID + "-" +
                            currentProduct + "-" +
@@ -92,6 +90,28 @@ public class CatalogActivity extends AppCompatActivity {
                cursor.close();
            }
          }
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu options from the res/menu/menu_catalog.xml file.
+        // This adds menu items to the app bar.
+        getMenuInflater().inflate(R.menu.menu_catalog, menu);
+        return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // User clicked on a menu option in the app bar overflow menu
+        switch (item.getItemId()) {
+            // Respond to a click on the "Insert dummy data" menu option
+            case R.id.action_insert_dummy_data:
+                displayDatabaseInfo();
+                return true;
+            // Respond to a click on the "Delete all entries" menu option
+            case R.id.action_delete_all_entries:
+                // Do nothing for now
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+}
 
