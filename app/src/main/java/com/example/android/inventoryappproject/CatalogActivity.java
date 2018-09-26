@@ -1,117 +1,72 @@
 package com.example.android.inventoryappproject;
 
-import android.content.Intent;
+import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TextView;
+import android.provider.BaseColumns;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Toast;
 
-import com.example.android.inventoryappproject.data.InventoryContract.inventoryEntry;
-import com.example.android.inventoryappproject.data.InventoryDbHelper;
+import com.example.android.inventoryappproject.data.InventoryContract;
 
-public class CatalogActivity extends AppCompatActivity {
-
-    private InventoryDbHelper mDbHelper;
-
+public class CatalogActivity  extends AppCompatActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-         mDbHelper = new InventoryDbHelper(this);
-         }
-
-         @Override
-    protected void onStart() {
-             super.onStart();
-             displayDatabaseInfo();
-         }
-
-         private void displayDatabaseInfo (){
-
-             SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-             String[] projection = {
-                     inventoryEntry._ID,
-                     inventoryEntry.COLUMN_INVENTORY_PRODUCT_NAME,
-                     inventoryEntry.COLUMN_INVENTORY_PRICE,
-                     inventoryEntry.COLUMN_INVENTORY_QUANTITY,
-                     inventoryEntry.COLUMN_INVENTORY_SUPPLIER_NAME,
-                     inventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE_NUMBER };
-
-             Cursor cursor = db.query(
-                     inventoryEntry.TABLE_NAME,
-                     projection,
-                     null,
-                     null,
-                     null,
-                     null,
-                     null);
-
-
-
-           try {
-               displayView.setText("The inventory table contains" + cursor.getCount() + "inventory.\n\n");
-               displayView.append(inventoryEntry._ID + "-" +
-                       inventoryEntry.COLUMN_INVENTORY_PRODUCT_NAME + "-" +
-                       inventoryEntry.COLUMN_INVENTORY_PRICE + "-" +
-                       inventoryEntry.COLUMN_INVENTORY_QUANTITY + "-" +
-                       inventoryEntry.COLUMN_INVENTORY_SUPPLIER_NAME + "-" +
-                       inventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE_NUMBER + "\n");
-
-               int idColumnIndex = cursor.getColumnIndex(inventoryEntry._ID);
-               int productColumnIndex = cursor.getColumnIndex(inventoryEntry.COLUMN_INVENTORY_PRODUCT_NAME);
-               int priceColumnIndex = cursor.getColumnIndex(inventoryEntry.COLUMN_INVENTORY_PRICE);
-               int quantityColumnIndex = cursor.getColumnIndex(inventoryEntry.COLUMN_INVENTORY_QUANTITY);
-               int supplierColumnIndex = cursor.getColumnIndex(inventoryEntry.COLUMN_INVENTORY_SUPPLIER_NAME);
-               int supplierPhoneColumnIndex = cursor.getColumnIndex(inventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE_NUMBER);
-
-               while (cursor.moveToNext()) {
-
-                   int currentID = cursor.getInt(idColumnIndex);
-                   String currentProduct = cursor.getString(productColumnIndex);
-                   String currentPrice = cursor.getString(priceColumnIndex);
-                   int currentQuantity = cursor.getInt(quantityColumnIndex);
-                   String currentSupplier = cursor.getString(supplierColumnIndex);
-                   String currentSupplierPhone = cursor.getString(supplierPhoneColumnIndex);
-
-                   displayView.append(("\n" + currentID + "-" +
-                           currentProduct + "-" +
-                           currentPrice + "-" +
-                           currentQuantity + "_" +
-                           currentSupplier + "_" +
-                           currentSupplierPhone));
-               }
-           }finally {
-               cursor.close();
-           }
-         }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu options from the res/menu/menu_catalog.xml file.
-        // This adds menu items to the app bar.
-        getMenuInflater().inflate(R.menu.menu_catalog, menu);
-        return true;
+        insertdata();
+        readdata();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // User clicked on a menu option in the app bar overflow menu
-        switch (item.getItemId()) {
-            // Respond to a click on the "Insert dummy data" menu option
-            case R.id.action_insert_dummy_data:
-                displayDatabaseInfo();
-                return true;
-            // Respond to a click on the "Delete all entries" menu option
-            case R.id.action_delete_all_entries:
-                // Do nothing for now
-                return true;
+
+    public void insertdata() {
+        ContentValues values = new ContentValues();
+        values.put(InventoryContract.inventoryEntry.COLUMN_INVENTORY_PRODUCT_NAME, "Games");
+        values.put(InventoryContract.inventoryEntry.COLUMN_INVENTORY_PRICE, 50);
+        values.put(InventoryContract.inventoryEntry.COLUMN_INVENTORY_QUANTITY, 20);
+        values.put(InventoryContract.inventoryEntry.COLUMN_INVENTORY_SUPPLIER_NAME, "PetsSmart");
+        values.put(InventoryContract.inventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE_NUMBER, "205-605-4040");
+        Uri uri = getContentResolver().insert(InventoryContract.inventoryEntry.CONTENT_URI, values);
+
+        if (uri != null) {
+            Toast.makeText(this, " inserted item in database table inventory", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, " something went wrong", Toast.LENGTH_LONG).show();
         }
-        return super.onOptionsItemSelected(item);
+    }
+
+    public void readdata() {
+
+        // 3) set a cursor to null
+        Cursor myCursor = null;
+
+        try {
+              myCursor = this.getContentResolver().query(InventoryContract.inventoryEntry.CONTENT_URI,
+                    null,
+                    null,
+                    null,
+                    BaseColumns._ID);
+
+            if (myCursor != null) {
+                myCursor.moveToFirst();
+                String ProductName = myCursor.getString(myCursor.getColumnIndex(InventoryContract.inventoryEntry.COLUMN_INVENTORY_PRODUCT_NAME));
+                double price = myCursor.getDouble(myCursor.getColumnIndex(InventoryContract.inventoryEntry.COLUMN_INVENTORY_PRICE));
+                int quantity = myCursor.getInt(myCursor.getColumnIndex(InventoryContract.inventoryEntry.COLUMN_INVENTORY_QUANTITY));
+                String suppliername = myCursor.getString(myCursor.getColumnIndex(InventoryContract.inventoryEntry.COLUMN_INVENTORY_SUPPLIER_NAME));
+                String suppliernumber = myCursor.getString(myCursor.getColumnIndex(InventoryContract.inventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE_NUMBER));
+
+                Toast.makeText(this, " ProductName = " + ProductName + "Price = " + price + "quantity = " + quantity + "suppliername = " + suppliername + "suppliernumber = " + suppliernumber, Toast.LENGTH_LONG).show();
+            }
+
+        } catch (Exception e) {
+            Log.d("activity", "Catch");
+        } finally {
+            // 8) close your cursor
+            myCursor.close();
+        }
     }
 }
-

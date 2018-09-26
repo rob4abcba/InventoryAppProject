@@ -12,13 +12,18 @@
         <activity android:name=".CatalogActivity"
             android:label="inventory">
 
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:name="com.example.android.inventoryappproject.data.InventoryContantProvider"
+            android:authorities="com.example.android.inventoryappproject.data"
+            android:exported="false"/>
     </application>
+
+
 
 </manifest>
