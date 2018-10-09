@@ -29,13 +29,17 @@
             android:paddingLeft="@dimen/super_small">
 
             <EditText
+                android:layout_height="wrap_content"
+               android:layout_width="wrap_content"
                android:id="@+id/edit_name"
                 android:hint="@string/hint_name"
                 android:inputType="textCapWords"
                 android:maxLength="20"/>
 
             <EditText
-               android:id="@+id/edit_price"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/edit_price"
                 android:hint="@string/hint_price"
                 android:inputType="numberDecimal"/>
 

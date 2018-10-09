@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name= "padding">16dp</dimen>
+    <dimen name= "fab_margin">16dp</dimen>
+
+   // sizes used in the app
+    <dimen name= "activity_size">16dp</dimen>
+
+    <dimen name= "super_small">4dp</dimen>
+    <dimen name= "medium_small">8dp</dimen>
+    <dimen name= "small">10dp</dimen>
+    <dimen name= "medium">20dp</dimen>
+    <dimen name= "medium_big">25dp</dimen>
+    <dimen name= "big">30dp</dimen>
+    <dimen name= "very_big">40dp</dimen>
+    <dimen name= "super_big">80dp</dimen>
+</resources>
