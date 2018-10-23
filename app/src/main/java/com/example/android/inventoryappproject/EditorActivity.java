@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.android.inventoryappproject.data.InventoryContract;
 
+
 public class EditorActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -136,7 +137,7 @@ public class EditorActivity extends AppCompatActivity implements
                             ContentValues values2 = new ContentValues();
                             String newStringQuantity = Integer.toString(quantity);
                             mQuantityEditText.setText(newStringQuantity, TextView.BufferType.EDITABLE);
-                            values2.put(inventoryEntry.COLUMN_BOOK_QUANTITY, newStringQuantity);
+                            values2.put(InventoryContract.InventoryEntry.COLUMN_BOOK_QUANTITY, newStringQuantity);
 
                         } else {
 
@@ -173,7 +174,7 @@ public class EditorActivity extends AppCompatActivity implements
                             ContentValues values = new ContentValues();
                             String newStringQuantity = Integer.toString(newQuantityMinus);
                             mQuantityEditText.setText(newStringQuantity, TextView.BufferType.EDITABLE);
-                            values.put(BookEntry.COLUMN_QUANTITY, newStringQuantity);
+                            values.put(InventoryContract.COLUMN_INVENTORY_QUANTITY, newStringQuantity);
                         }
                     }
 
@@ -312,11 +313,11 @@ public class EditorActivity extends AppCompatActivity implements
                 } else {
 
                     ContentValues values = new ContentValues();
-                    values.put(InventroyEntry.COLUMN_BOOK_NAME, nameString);
-                    values.put(BookEntry.COLUMN_BOOK_SUPPLIER, supplierString);
-                    values.put(BookEntry.COLUMN_BOOK_PHONE, phoneString);
-                    values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantityString);
-                    values.put(BookEntry.COLUMN_BOOK_PRICE, priceString);
+                    values.put(InventroyEntry.COLUMN_INVENTORY_PRODUCT_NAME, nameString);
+                    values.put(BookEntry.COLUMN_INVENTROY_SUPPLIER_NAME, supplierString);
+                    values.put(BookEntry.COLUMN_INVENTROY_SUPPLIER_PHONE_NUMBER, phoneString);
+                    values.put(inventroyEntry.COLUMN_INVENTORY_QUANTITY, quantityString);
+                    values.put(BookEntry.COLUMN_INVENTROY_PRICE, priceString);
 
 
                     if (mCurrentInventoryUri == null) {
