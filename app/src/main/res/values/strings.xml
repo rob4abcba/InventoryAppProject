@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Inventory</string>
 
+    <!-- main screen -->
     // menu inserting dummy data
     <string name="action_insert_dummy_data">Insert Dummy Data</string>
     // menu delete entries
@@ -10,15 +11,63 @@
     // delete inventory data
     <string name="action_delete">Delete</string>
 
+     <!-- fake data -->
+    <string name="dummy_name"> library </string>
+    <string name="dummy_price">11.25</string>
+    <string name="dummy_quantity">7</string>
+    <string name="dummy_supplier">Shacks</string>
+    <string name="dummy_phone"> 18002853332 </string>
 
-   //  app content
+    <!-- edited activity -->
+    <string name="editor_new_activity_title_new_product"> Add a product</string>
+    <string name="editor_activity_title_edit_product"> Edit Inventory </string>
+
+
+    <!-- toast message  -->
+    <string name="quantity_change_inventory_error">Sorry no products</string>
+    <string name="quantity_change_inventory_good">quantity reduced by 1</string>
+    <string name="item_removed_success">item removed success</string>
+
+    <!-- Toast message in editor when current inventory item was successfully deleted  -->
+    <string name="editor_delete_inventory_successful">Inventory deleted</string>
+    <!-- Toast message in editor when current inventory item has failed to be deleted  -->
+    <string name="editor_delete_inventory_failed">Error with deleting inventory</string>
+    <!-- Toast message in editor when new inventory item has been successfully inserted  -->
+    <string name="editor_insert_inventory_successful">Inventory saved</string>
+    <!-- Toast message in editor when new inventory item has failed to be inserted  -->
+    <string name="editor_insert_inventory_failed">Error with saving inventory</string>
+    <!-- Toast message in editor when current inventory item was successfully updated  -->
+    <string name="editor_update_inventory_successful">Inventory updated</string>
+    <!-- Toast message in editor when current inventory item has failed to be updated  -->
+    <string name="editor_update_inventory_failed">Error with updating inventory</string>
+
+    <!-- Dialog messages -->
+    <!-- Dialog message when user is leaving editor but hasn't saved changes  -->
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <!-- Dialog button text for the option to discard a user's changes  -->
+    <string name="discard">Discard</string>
+    <!-- Dialog button text for the option to keep editing the current inventory item -->
+    <string name="keep_editing">Keep Editing</string>
+    <!-- Dialog message to ask the user to confirm deleting the current inventory item  -->
+    <string name="delete_dialog_msg">Delete this inventory?</string>
+    <!-- Dialog button text for the option to confirm deleting the current inventory item -->
+    <string name="delete">Delete</string>
+    <!-- Dialog button text for the option to cancel deletion of the current inventory item -->
+    <string name="cancel">Cancel</string>
+
+    <!-- Checks for saving to inventory database -->
+    <string name="nochanges_save_failed">Not saved: No input data</string>
+    <string name="null_save_failed">Not saved: No null values</string>
+    <string name="editnull_save_failed">Not edited: No null values</string>
+    <string name="phone_save_failed">Phone must be 11 numbers (example: 18882804331) beginning with country code</string>
+
+    //  app content
     <string name="opps_its_empty">Opps it\'s empty</string>
-
     <string name="add_inventory_data">add inventory data</string>
     <string name="Overview">Overview</string>
-    <string name="sale_b">sale button</string>
+    <string name="sale_button">sale button</string>
 
-    // hints
+    // hints1
     <string name="product_info">product info</string>
     <string name="hint_name">Name</string>
     <string name="hint_price">Price</string>
@@ -28,6 +77,10 @@
     <string name="hint_supplier_phone">Supplier Phone</string>
     <string name="tap_call">Tap TO Call</string>
 
+    // strings
+    <string name="minus_button">minus button</string>
+    <string name="plus_button">plus button</string>
+    <string name="phone_image">phone</string>
 
 
 

@@ -49,7 +49,7 @@ public class InventoryCursorAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
 
         TextView nameTextView = (TextView) view.findViewById(R.id.name);
-        TextView summaryTextView = (TextView) view.findViewById(R.id.summary);
+        TextView summaryTextView = (TextView) view.findViewById(R.id.price);
 
 
         int nameColumnIndex = cursor.getColumnIndex(InventoryContract.inventoryEntry.COLUMN_INVENTORY_PRODUCT_NAME);

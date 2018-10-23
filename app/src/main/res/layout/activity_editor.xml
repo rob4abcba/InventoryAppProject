@@ -60,7 +60,7 @@
                     android:src="@drawable/baseline_minimize_24"/>
                 <!-- quantity -->
                 <EditText
-                    android:id="@+id/edit_space"
+                    android:id="@+id/edit_quantity"
                     android:layout_width="@dimen/super_big"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/minusButton"
@@ -96,7 +96,7 @@
       <RelativeLayout
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:weight="2"
+          android:layout_weight="2"
           android:clipToPadding="false"
           android:paddingBottom="@dimen/big"
           android:paddingStart="@dimen/super_small"
@@ -145,7 +145,5 @@
               android:src="@drawable/baseline_add_24"/>
 
       </RelativeLayout>
-
-
 
 </ScrollView>
