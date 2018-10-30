@@ -83,12 +83,12 @@ public class CatalogActivity  extends AppCompatActivity {
                 Toast.makeText(this, " ProductName = " + ProductName + "Price = " + price + "quantity = " + quantity + "suppliername = " + suppliername + "suppliernumber = " + suppliernumber, Toast.LENGTH_LONG).show();
 
             }
-            Log.d("Hello" , myCursor);
+
 
         } catch (Exception e) {
             Log.d("activity", "catch");
         } finally {
-            Log.d("Hello" , myCursor);
+
             // 8) close your cursor
             myCursor.close();
         }

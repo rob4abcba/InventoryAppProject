@@ -4,10 +4,9 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.example.android.inventoryappproject.data.InventoryContract.inventoryEntry;
+import com.example.android.inventoryappproject.data.InventoryContract.InventoryEntry;
 
 
 public class InventoryDbHelper extends SQLiteOpenHelper {
@@ -31,13 +30,13 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
       @Override
       public void onCreate (SQLiteDatabase sqLiteDatabase) {
         try {
-          String SQL_CREATE_INVENTORY_TABLE = "CREATE TABLE " + inventoryEntry.TABLE_NAME + " ("
-                  + inventoryEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                  + inventoryEntry.COLUMN_INVENTORY_PRODUCT_NAME + " TEXT NOT NULL, "
-                  + inventoryEntry.COLUMN_INVENTORY_PRICE + " DECIMAL, "
-                  + inventoryEntry.COLUMN_INVENTORY_QUANTITY + " INTEGER NOT NULL, "
-                  + inventoryEntry.COLUMN_INVENTORY_SUPPLIER_NAME + " TEXT NOT NULL, "
-                  + inventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE_NUMBER + " TEXT NOT NULL );";
+          String SQL_CREATE_INVENTORY_TABLE = "CREATE TABLE " + InventoryEntry.TABLE_NAME + " ("
+                  + InventoryEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                  + InventoryEntry.COLUMN_INVENTORY_PRODUCT_NAME + " TEXT NOT NULL, "
+                  + InventoryEntry.COLUMN_INVENTORY_PRICE + " DECIMAL, "
+                  + InventoryEntry.COLUMN_INVENTORY_QUANTITY + " INTEGER NOT NULL, "
+                  + InventoryEntry.COLUMN_INVENTORY_SUPPLIER_NAME + " TEXT NOT NULL, "
+                  + InventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE_NUMBER + " TEXT NOT NULL );";
 
           sqLiteDatabase.execSQL(SQL_CREATE_INVENTORY_TABLE);
             Toast.makeText(this.MYCONTEXT, " Sucssefuly created database",Toast.LENGTH_LONG).show();

@@ -2,7 +2,6 @@ package com.example.android.inventoryappproject.data;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,8 +51,8 @@ public class InventoryCursorAdapter extends CursorAdapter {
         TextView summaryTextView = (TextView) view.findViewById(R.id.price);
 
 
-        int nameColumnIndex = cursor.getColumnIndex(InventoryContract.inventoryEntry.COLUMN_INVENTORY_PRODUCT_NAME);
-        int breedColumnIndex = cursor.getColumnIndex(InventoryContract.inventoryEntry.COLUMN_INVENTORY_PRICE);
+        int nameColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRODUCT_NAME);
+        int breedColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRICE);
 
 
         String petName = cursor.getString(nameColumnIndex);

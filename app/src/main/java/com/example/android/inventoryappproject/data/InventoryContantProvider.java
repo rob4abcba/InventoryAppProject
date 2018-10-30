@@ -8,22 +8,22 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.preference.Preference;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 public class InventoryContantProvider extends ContentProvider {
     public static final int INVENTORY = 100;
     public static final int INVENTORY_WITH_ID=101;
-    public static final UriMatcher uriMatcher = buildUriMatcher();
     public InventoryDbHelper helper;
-    public static UriMatcher buildUriMatcher()
-    {
-        UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
-        uriMatcher.addURI(InventoryContract.AUTHORITY, InventoryContract.PATH_WALMART, INVENTORY);
-        uriMatcher.addURI(InventoryContract.AUTHORITY, InventoryContract.PATH_WALMART+"/#",INVENTORY_WITH_ID);
-        return uriMatcher;
+    private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+
+    static {
+        sUriMatcher.addURI(InventoryContract.AUTHORITY, InventoryContract.PATH_WALMART, INVENTORY);
+        sUriMatcher.addURI(InventoryContract.AUTHORITY, InventoryContract.PATH_WALMART+"/#",INVENTORY_WITH_ID);
+    }
+
+    public InventoryContantProvider() {
     }
 
     @Override
@@ -35,20 +35,19 @@ public class InventoryContantProvider extends ContentProvider {
 
     @Nullable
     @Override
-    public Cursor query(@NonNull Uri uri, String[] projection, String selection,
-                        String[] selectionArgs, String sortOrder) {
+    public Cursor query(@NonNull Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         // Get access to underlying database (read-only for query)
         final SQLiteDatabase db = helper.getReadableDatabase();
 
         // Write URI match code and set a variable to return a Cursor
-        int match = uriMatcher.match(uri);
+        int match = sUriMatcher.match(uri);
         Cursor retCursor;
 
         // Query for the tasks directory and write a default case
         switch (match) {
             // Query for the tasks directory
             case INVENTORY:
-                retCursor =  db.query(InventoryContract.inventoryEntry.TABLE_NAME,
+                retCursor =  db.query(InventoryContract.InventoryEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -57,7 +56,7 @@ public class InventoryContantProvider extends ContentProvider {
                         sortOrder);
                 break;
             case INVENTORY_WITH_ID:
-                retCursor = db.query(InventoryContract.inventoryEntry.TABLE_NAME,
+                retCursor = db.query(InventoryContract.InventoryEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -89,16 +88,16 @@ public class InventoryContantProvider extends ContentProvider {
         final SQLiteDatabase db =  helper.getWritableDatabase();
 
         // Write URI matching code to identify the match for the tasks directory
-        int match = uriMatcher.match(uri);
+        int match = sUriMatcher.match(uri);
         Uri returnUri; // URI to be returned
 
         switch (match) {
             case INVENTORY:
                 // Insert new values into the database
                 // Inserting values into tasks table
-                long id = db.insert(InventoryContract.inventoryEntry.TABLE_NAME, null, contentValues);
+                long id = db.insert(InventoryContract.InventoryEntry.TABLE_NAME, null, contentValues);
                 if ( id > 0 ) {
-                    returnUri = ContentUris.withAppendedId(InventoryContract.inventoryEntry.CONTENT_URI, id);
+                    returnUri = ContentUris.withAppendedId(InventoryContract.InventoryEntry.CONTENT_URI, id);
                 } else {
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 }
@@ -121,7 +120,7 @@ public class InventoryContantProvider extends ContentProvider {
         // Get access to the database and write URI matching code to recognize a single item
         final SQLiteDatabase db = helper.getWritableDatabase();
 
-        int match = uriMatcher.match(uri);
+        int match = sUriMatcher.match(uri);
         // Keep track of the number of deleted tasks
         int tasksDeleted; // starts as 0
 
@@ -133,7 +132,7 @@ public class InventoryContantProvider extends ContentProvider {
                 // Get the task ID from the URI path
                 String id = uri.getPathSegments().get(1);
                 // Use selections/selectionArgs to filter for this ID
-                tasksDeleted = db.delete(InventoryContract.inventoryEntry.TABLE_NAME, "id=?", new String[]{id});
+                tasksDeleted = db.delete(InventoryContract.InventoryEntry.TABLE_NAME, "id=?", new String[]{id});
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);

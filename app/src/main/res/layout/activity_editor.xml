@@ -73,7 +73,7 @@
                       android:id="@+id/plus_button"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_toRightOf="@id/edit_space"
+                      android:layout_toRightOf="@id/edit_quantity"
                       android:clickable="true"
                       android:contentDescription="@string/plus_button"
                       android:focusable="false"
