@@ -25,7 +25,7 @@ import com.example.android.inventoryappproject.data.InventoryCursorAdapter;
 public class CatalogActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        
+
         private static final int  EXISTING_INVENTORY_LOADER = 0;
         InventoryCursorAdapter mCursorAdapter;
 
