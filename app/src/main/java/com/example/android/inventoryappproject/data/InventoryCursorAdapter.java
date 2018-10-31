@@ -59,7 +59,6 @@ public class InventoryCursorAdapter extends CursorAdapter {
 
 
 
-        // Update the TextViews with the attributes for the current pet
         nameTextView.setText(petName);
 
     }

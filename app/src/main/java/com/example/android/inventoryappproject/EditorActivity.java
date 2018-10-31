@@ -1,6 +1,7 @@
 package com.example.android.inventoryappproject;
 
 import android.Manifest;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,13 +21,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.inventoryappproject.data.InventoryContract;
+import com.example.android.inventoryappproject.data.InventoryCursorAdapter;
 
 
 public class EditorActivity extends AppCompatActivity implements
