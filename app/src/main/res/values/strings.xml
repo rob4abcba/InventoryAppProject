@@ -27,6 +27,8 @@
     <string name="quantity_change_inventory_error">Sorry no products</string>
     <string name="quantity_change_inventory_good">quantity reduced by 1</string>
     <string name="item_removed_success">item removed success</string>
+    <string name="inventory_none_left_toast_msg">No inventory left</string>
+    <string name="inventory_one_deleted_toast_msg">One inventory deleted</string>
 
     <!-- Toast message in editor when current inventory item was successfully deleted  -->
     <string name="editor_delete_inventory_successful">Inventory deleted</string>
