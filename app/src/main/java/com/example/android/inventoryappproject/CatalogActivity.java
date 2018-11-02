@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.support.annotation.Nullable;
+
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.NavUtils;
@@ -70,7 +71,7 @@ import com.example.android.inventoryappproject.data.InventoryCursorAdapter;
                     }
                 });
 
-                getLoaderManager().initLoader(EXISTING_INVENTORY_LOADER, null, this);
+                getSupportLoaderManager().initLoader(EXISTING_INVENTORY_LOADER, null, this);
             }
 
 
