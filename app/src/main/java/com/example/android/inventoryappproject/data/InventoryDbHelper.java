@@ -39,7 +39,6 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
                   + InventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE_NUMBER + " TEXT NOT NULL );";
 
           sqLiteDatabase.execSQL(SQL_CREATE_INVENTORY_TABLE);
-            Toast.makeText(this.MYCONTEXT, " Sucssefuly created database",Toast.LENGTH_LONG).show();
       }catch (SQLException e) {
 
         Toast.makeText(this.MYCONTEXT, " Error mysqli !"+e.getMessage(),Toast.LENGTH_LONG).show();

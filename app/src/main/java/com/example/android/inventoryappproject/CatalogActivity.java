@@ -77,8 +77,10 @@ import com.example.android.inventoryappproject.data.InventoryCursorAdapter;
 
             public void insertdata() {
                 ContentValues values = new ContentValues();
+
                 values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRODUCT_NAME, "Games");
                 values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRICE, 50);
+                values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_QUANTITY, "60");
                 values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_SUPPLIER_NAME, "PetsSmart");
                 values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_SUPPLIER_PHONE_NUMBER, "205-605-4040");
                 Uri uri = getContentResolver().insert(InventoryContract.InventoryEntry.CONTENT_URI, values);
