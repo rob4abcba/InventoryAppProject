@@ -7,143 +7,122 @@
     android:fillViewport="true">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/very_big"
         android:orientation="vertical"
-        android:padding="@dimen/big"/>
+        android:padding="@dimen/big">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- field -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:orientation="vertical"
-            android:paddingStart="@dimen/super_small"
             android:paddingLeft="@dimen/super_small">
+
 
             <EditText
                 android:id="@+id/edit_name"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="@string/hint_name"
                 android:inputType="textCapWords"
                 android:maxLength="20"/>
 
             <EditText
                 android:id="@+id/edit_price"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_price"
                 android:inputType="numberDecimal"/>
-
-
-            <RelativeLayout
-                android:id="@+id/Layout1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <!-- minus button-->
-                <ImageButton
-                    android:id="@+id/minusButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:contentDescription="@string/minus_button"
-                    android:src="@drawable/baseline_minimize_24"/>
-                <!-- quantity -->
-                <EditText
-                    android:id="@+id/edit_quantity"
-                    android:layout_width="@dimen/super_big"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/minusButton"
-                    android:gravity="center"
-                    android:hint="@string/hint_quantity"
-                    android:inputType="number"/>
-
-                <!-- plus button-->
-                  <ImageButton
-                      android:id="@+id/plus_button"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_toRightOf="@id/edit_quantity"
-                      android:clickable="true"
-                      android:contentDescription="@string/plus_button"
-                      android:focusable="false"
-                      android:src="@drawable/baseline_add_24"
-                      android:text="@string/tap_call"/>
-
-            </RelativeLayout>
-
         </LinearLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/Layout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <!-- minus button-->
+            <ImageButton
+                android:id="@+id/minusButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:contentDescription="@string/minus_button"
+                android:src="@drawable/baseline_minimize_24"/>
+
+            <EditText
+                android:id="@+id/edit_quantity"
+                android:layout_width="@dimen/super_big"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/minusButton"
+                android:gravity="center"
+                android:hint="@string/hint_quantity"
+                android:inputType="number"/>
+
+            <ImageButton
+                android:id="@+id/plus_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/edit_quantity"
+                android:clickable="true"
+                android:contentDescription="@string/plus_button"
+                android:focusable="false"
+                android:src="@drawable/baseline_add_24"
+                android:text="@string/tap_call"/>
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/super_small"
+            android:paddingLeft="@dimen/super_small"
+            android:paddingBottom="@dimen/big">
+
+            <EditText
+                android:id="@+id/edit_suppliername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_supplier_name"
+                android:inputType="textCapWords"
+                android:maxLength="20" />
+            <EditText
+                android:id="@+id/supplierphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_suppliername"
+                android:hint="@string/hint_supplier_phone"
+                android:inputType="number"
+                android:maxLength="11" />
+
+            <ImageButton
+                android:id="@+id/phoneButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/supplierphone"
+                android:layout_centerInParent="false"
+                android:layout_marginBottom="@dimen/small"
+                android:clickable="true"
+                android:contentDescription="@string/phone_image"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:src="@drawable/baseline_call_24" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/delete_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="@dimen/small"
+                android:src="@drawable/baseline_add_24" />
+        </RelativeLayout>
 
     </LinearLayout>
 
-       <LinearLayout
-           android:id="@+id/space_measurment"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"/>
-
-      <!-- Input area -->
-      <RelativeLayout
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="2"
-          android:clipToPadding="false"
-          android:paddingBottom="@dimen/big"
-          android:paddingStart="@dimen/super_small"
-          android:paddingLeft="@dimen/super_small">
-          
-          <EditText
-              android:id="@+id/edit_suppliername"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:hint="@string/hint_supplier_name"
-              android:inputType="textCapWords"
-              android:maxLength="20"/>
-
-          <!-- Supplier -->
-          <EditText
-              android:id="@+id/supplierphone"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/edit_suppliername"
-              android:hint="@string/hint_supplier_phone"
-              android:inputType="number"
-              android:maxLength="11"/>
-          
-          <ImageButton
-              android:id="@+id/phoneButton"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/supplierphone"
-              android:layout_centerInParent="true"
-              android:layout_marginBottom="@dimen/small"
-              android:clickable="true"
-              android:contentDescription="@string/phone_image"
-              android:focusable="false"
-              android:focusableInTouchMode="false"
-              android:src="@drawable/baseline_call_24"/>
-
-          <!-- Delete -->
-
-          <android.support.design.widget.FloatingActionButton
-              android:layout_height="wrap_content"
-              android:layout_width="wrap_content"
-              android:id="@+id/delete_items"
-              android:layout_alignParentBottom="true"
-              android:layout_alignParentRight="true"
-              android:layout_marginRight="@dimen/small"
-              android:src="@drawable/baseline_add_24"/>
-
-      </RelativeLayout>
-
 </ScrollView>
+

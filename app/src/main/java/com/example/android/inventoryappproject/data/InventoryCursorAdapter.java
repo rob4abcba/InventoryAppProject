@@ -52,14 +52,14 @@ public class InventoryCursorAdapter extends CursorAdapter {
 
 
         int nameColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRODUCT_NAME);
-        int breedColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRICE);
+        int inventoryColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRICE);
 
 
-        String petName = cursor.getString(nameColumnIndex);
+        String inventoryName = cursor.getString(nameColumnIndex);
 
 
 
-        nameTextView.setText(petName);
+        nameTextView.setText(inventoryName);
 
     }
 
